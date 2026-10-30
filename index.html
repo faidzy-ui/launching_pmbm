@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peresmian PMBM</title>
+    <title>Peresmian PMBM MTs Daarul Hikmah Pamulang</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,6 +17,7 @@
                     colors: {
                         darkbg: '#050505', 
                         gold: {
+                            300: '#fef08a',
                             400: '#f3e5ab',
                             500: '#d4af37',
                             600: '#aa8c2c',
@@ -38,11 +39,11 @@
             background-color: #050505;
             color: white;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Lock scroll for presentation */
+            overflow: hidden; /* Mencegah scroll selama presentasi */
             user-select: none;
         }
 
-        /* --- Scene System --- */
+        /* --- System Scene Management --- */
         .scene {
             position: absolute;
             inset: 0;
@@ -61,28 +62,36 @@
             z-index: 20;
         }
 
-        /* --- Buttons --- */
-        .btn-start {
-            background: linear-gradient(135deg, #222 0%, #111 100%);
-            border: 2px solid #d4af37;
-            color: #d4af37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            transition: all 0.3s ease;
+        /* --- Glow & Gradient Text Effects --- */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #aa8c2c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .btn-start:hover {
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            transform: scale(1.05);
+        
+        .glow-title {
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 50px rgba(212, 175, 55, 0.4);
         }
 
-        /* --- 3D Blue Physical Button --- */
+        .glow-gold-text {
+            background: linear-gradient(to right, #f3e5ab, #d4af37, #fef08a, #d4af37);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 4s infinite linear;
+        }
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        /* --- 3D Blue Physical Button (Scene 2) --- */
         .btn-3d-wrapper {
             position: relative;
             display: inline-block;
             border-radius: 50%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(145deg, #1f2937, #050505);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 2px 6px rgba(255,255,255,0.15);
             margin-bottom: 1.5rem;
         }
         
@@ -91,13 +100,13 @@
             width: 220px;
             height: 220px;
             border-radius: 50%;
-            /* Gradient biru mencolok */
-            background: radial-gradient(circle at 50% 30%, #60a5fa 0%, #3b82f6 40%, #1e40af 100%);
+            /* Gradient Biru 3D */
+            background: radial-gradient(circle at 50% 30%, #60a5fa 0%, #3b82f6 45%, #1e40af 100%);
             box-shadow: 
-                inset 0 6px 12px rgba(255,255,255,0.5), /* Highlight atas */
-                inset 0 -10px 20px rgba(0,0,0,0.5), /* Bayangan dalam bawah */
-                0 20px 0 #172554, /* Ketebalan/kedalaman fisik tombol 3D */
-                0 30px 40px rgba(0, 0, 0, 0.8); /* Drop shadow ke lantai */
+                inset 0 6px 14px rgba(255,255,255,0.6), 
+                inset 0 -10px 20px rgba(0,0,0,0.6), 
+                0 22px 0 #172554, 
+                0 32px 45px rgba(0, 0, 0, 0.85);
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -109,36 +118,25 @@
             filter: brightness(1.1);
         }
         
-        /* Animasi saat tombol ditekan (translasi Y ke bawah dan pengurangan ketebalan) */
         .btn-3d.pressed {
-            transform: translateY(20px);
+            transform: translateY(22px);
             box-shadow: 
-                inset 0 6px 12px rgba(255,255,255,0.5), 
-                inset 0 -10px 20px rgba(0,0,0,0.5), 
-                0 0px 0 #172554, /* Ketebalan menghilang saat ditekan penuh */
-                0 10px 15px rgba(0, 0, 0, 0.8); /* Shadow merapat */
+                inset 0 6px 12px rgba(255,255,255,0.6), 
+                inset 0 -10px 20px rgba(0,0,0,0.6), 
+                0 0px 0 #172554, 
+                0 10px 15px rgba(0, 0, 0, 0.8);
         }
         
-        /* Ikon Power pada tombol */
         .btn-3d-icon {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             fill: none;
-            stroke: white;
+            stroke: #ffffff;
             stroke-width: 2.5;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
         }
 
-        /* --- Animations --- */
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
-            50% { transform: scale(1.05); box-shadow: 0 0 70px rgba(212, 175, 55, 0.9); }
-        }
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- Countdown --- */
+        /* --- Countdown Display --- */
         #countdown-container {
             display: none;
             opacity: 0;
@@ -150,21 +148,21 @@
         }
         .countdown-number {
             font-family: 'Montserrat', sans-serif;
-            font-size: 20rem;
+            font-size: 22rem;
             font-weight: 900;
             line-height: 1;
             background: linear-gradient(to bottom, #ffffff, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 50px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 10px 60px rgba(212, 175, 55, 0.6);
             transform: scale(0.5);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .countdown-number.pop {
             transform: scale(1);
         }
 
-        /* --- Final Reveal Text --- */
+        /* --- Final Reveal Text Container --- */
         #final-text-container {
             opacity: 0;
             display: none;
@@ -174,90 +172,90 @@
             display: flex;
             opacity: 1;
         }
-        
-        .glow-text {
-            background: linear-gradient(to right, #f3e5ab, #d4af37, #f3e5ab);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s infinite linear;
-            background-size: 200% auto;
-        }
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
 
-        /* --- Portal Button (Fades in later) --- */
+        /* --- Portal Button Animation --- */
         #portal-btn {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(25px);
             transition: opacity 1.5s ease, transform 1.5s ease;
         }
         #portal-btn.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
     </style>
 </head>
 <body>
 
-    <!-- SCENE 1: SISTEM LAUNCHING (Inisiasi Layar & Audio) -->
+    <!-- ================================================================= -->
+    <!-- SCENE 1: PEMBUKA / INTRO -->
+    <!-- ================================================================= -->
     <div id="scene-1" class="scene active">
         <div class="text-center px-4 w-full max-w-7xl mx-auto flex flex-col items-center justify-center min-h-screen py-8">
             
-            <!-- Flanked Header: Logo Left - Text Middle - Logo Right -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 mb-12 w-full">
-                <!-- Logo Left: Kemenag -->
-                <img src="logo_kemenag.png" alt="Logo Kemenag" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
+            <!-- Logo Mengapit Teks Utama -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 mb-10 w-full">
+                
+                <!-- Logo Kiri: Kemenag -->
+                <img src="logo_kemenag.png" 
+                     alt="Logo Kemenag" 
+                     class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
 
-                <!-- Center Text Stack -->
+                <!-- Tumpukan Teks Tengah -->
                 <div class="flex flex-col items-center justify-center space-y-2 md:space-y-3">
-                    <!-- Line 1: PERESMIAN -->
-                    <span class="font-heading text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-[0.25em] uppercase drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                    <!-- 1. PERESMIAN -->
+                    <span class="font-heading text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-[0.25em] uppercase glow-title">
                         PERESMIAN
                     </span>
 
-                    <!-- Line 2: Penerimaan Murid Baru Madrasah -->
-                    <span class="font-body text-lg md:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent tracking-wide">
+                    <!-- 2. Penerimaan Murid Baru Madrasah -->
+                    <span class="font-body text-lg md:text-2xl lg:text-3xl font-semibold text-gold-gradient tracking-wide">
                         Penerimaan Murid Baru Madrasah
                     </span>
 
-                    <!-- Line 3: (PMBM) -->
+                    <!-- 3. (PMBM) -->
                     <span class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-wider drop-shadow-lg leading-none py-1">
                         (PMBM)
                     </span>
 
-                    <!-- Line 4: MTs. Daarul Hikmah Pamulang -->
-                    <span class="font-heading text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent drop-shadow-md pt-1">
+                    <!-- 4. MTs. Daarul Hikmah Pamulang -->
+                    <span class="font-heading text-2xl md:text-4xl lg:text-5xl font-bold text-gold-gradient drop-shadow-md pt-1">
                         MTs. Daarul Hikmah Pamulang
                     </span>
 
-                    <!-- Line 5: Tahun 2027/2028 -->
+                    <!-- 5. Tahun 2027/2028 -->
                     <span class="font-body text-lg md:text-2xl lg:text-3xl font-medium text-gray-300 tracking-[0.25em] uppercase pt-1">
                         Tahun 2027/2028
                     </span>
                 </div>
 
-                <!-- Logo Right: Madrasah -->
-                <img src="logo_mts.png" alt="Logo MTs Daarul Hikmah" onerror="this.onerror=null; this.src='https://placehold.co/160x160/1e3a8a/ffffff?text=Logo+MTs';" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
+                <!-- Logo Kanan: MTs. Daarul Hikmah -->
+                <!-- CATATAN: Ganti 'logo-madrasah.png' dengan nama file logo lokal Anda jika dihosting offline -->
+                <img src="logo_mts.png" 
+                     alt="Logo MTs Daarul Hikmah" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/1e3a8a/ffffff?text=Logo+MTs';" 
+                     class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
             </div>
 
-            <!-- Start Button below flanked container -->
-            <button onclick="startSystem()" class="px-14 py-4 bg-white text-gray-900 font-bold font-heading rounded-full hover:bg-gray-200 transition-transform transform hover:scale-105 text-xl md:text-2xl shadow-[0_0_35px_rgba(255,255,255,0.4)] tracking-widest uppercase cursor-pointer">
+            <!-- Tombol MULAI -->
+            <button onclick="startLaunching()" 
+                    class="px-14 py-4 bg-white text-gray-900 font-bold font-heading rounded-full hover:bg-gray-200 transition-transform transform hover:scale-105 text-xl md:text-2xl shadow-[0_0_35px_rgba(255,255,255,0.4)] tracking-widest uppercase cursor-pointer">
                 MULAI
             </button>
 
         </div>
     </div>
 
-    <!-- SCENE 2: PERESMIAN & COUNTDOWN -->
+    <!-- ================================================================= -->
+    <!-- SCENE 2: TOMBOL PERESMIAN & COUNTDOWN -->
+    <!-- ================================================================= -->
     <div id="scene-2" class="scene">
         
-        <!-- Big Interactive 3D Blue Button -->
+        <!-- Wadah Tombol Fisik 3D Biru -->
         <div id="launch-button-container" class="flex flex-col items-center justify-center">
             <div class="btn-3d-wrapper">
                 <div id="btn-launch-physical" class="btn-3d" onclick="triggerLaunch()">
-                    <!-- SVG Power/Launch Icon -->
+                    <!-- Ikon Saklar/Power -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="btn-3d-icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
                     </svg>
@@ -268,53 +266,60 @@
             </p>
         </div>
 
-        <!-- Countdown Timer (Hidden initially) -->
+        <!-- Tampilan Hitung Mundur (Hitungan 5 ke 0) -->
         <div id="countdown-container" class="text-center w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div id="countdown-value" class="countdown-number">5</div>
         </div>
     </div>
 
-    <!-- SCENE 3: VIDEO & OPENING TEXT -->
+    <!-- ================================================================= -->
+    <!-- SCENE 3: VIDEO PEMBUKA & SCENE 4: PENUTUP AKHIR -->
+    <!-- ================================================================= -->
     <div id="scene-3" class="scene bg-black">
         
-        <!-- Video Element -->
-        <video id="intro-video" class="w-full h-full object-contain absolute inset-0 z-10" preload="auto" controls>
-            <!-- Ganti src ini dengan video peresmian Anda yang sesungguhnya -->
-            <source src="launching.mp4" type="video/mp4">
-            Browser Anda tidak mendukung tag video.
+        <!-- Pemutar Video Pembuka -->
+        <!-- CATATAN: Ganti 'video-pmbm.mp4' dengan file video peresmian Anda -->
+        <video id="launch-video" class="w-full h-full object-contain absolute inset-0 z-10" preload="auto" controls onended="goToFinalScene()">
+            <source src="video-pmbm.mp4" type="video/mp4">
+            <!-- Fallback URL untuk pengujian jika video lokal belum diunggah -->
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag pemutar video.
         </video>
 
-        <!-- Skip Button -->
-        <button id="skip-btn" onclick="endVideo()" class="absolute bottom-10 right-10 z-20 border border-white/20 bg-black/50 text-white/50 px-6 py-2 rounded-full text-sm hover:text-white hover:border-white transition opacity-80 backdrop-blur-sm">
+        <!-- Tombol Lewati Video (Pojok Kanan Bawah) -->
+        <button id="skip-btn" onclick="goToFinalScene()" class="absolute bottom-10 right-10 z-20 border border-white/20 bg-black/50 text-white/60 px-6 py-2 rounded-full text-sm hover:text-white hover:border-white transition backdrop-blur-sm">
             Skip Video &rarr;
         </button>
 
-        <!-- Final Reveal Container -->
+        <!-- SCENE 4: SCENE PENUTUP / FINAL STATE -->
         <div id="final-text-container" class="absolute inset-0 z-30 bg-[#050505] flex-col justify-center items-center px-10 text-center">
             
-            <!-- Baris 1: PMBM -->
-            <h1 class="font-heading font-extrabold text-6xl md:text-8xl lg:text-9xl text-gold-400 tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-2">
+            <!-- 1. PMBM -->
+            <h1 class="font-heading font-extrabold text-6xl md:text-8xl lg:text-9xl text-gold-400 tracking-wider drop-shadow-[0_0_35px_rgba(212,175,55,0.5)] mb-2">
                 PMBM
             </h1>
 
-            <!-- Baris 2: MTs. Daarul Hikmah -->
-            <h2 class="font-heading font-bold text-3xl md:text-5xl lg:text-6xl bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent tracking-wide mb-6 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            <!-- 2. MTs. Daarul Hikmah -->
+            <h2 class="font-heading font-bold text-3xl md:text-5xl lg:text-6xl text-gold-gradient tracking-wide mb-6 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
                 MTs. Daarul Hikmah
             </h2>
 
-            <!-- Baris 3: TELAH RESMI DIBUKA! -->
-            <h3 class="font-heading font-black text-4xl md:text-6xl lg:text-7xl uppercase tracking-widest glow-text drop-shadow-[0_0_35px_rgba(212,175,55,0.6)] mb-12">
+            <!-- 3. TELAH RESMI DIBUKA! -->
+            <h3 class="font-heading font-black text-4xl md:text-6xl lg:text-7xl uppercase tracking-widest glow-gold-text drop-shadow-[0_0_40px_rgba(212,175,55,0.6)] mb-12">
                 TELAH RESMI DIBUKA!
             </h3>
 
-            <a href="#" id="portal-btn" class="bg-gradient-to-r from-gold-600 to-gold-400 text-[#050505] font-bold font-heading uppercase tracking-widest px-10 py-5 rounded-full shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:scale-105 hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] transition-all duration-300">
-                Menuju Portal Resmi PMBM
-            </a>
+            <!-- Tombol Menuju Portal Resmi -->
+            <button onclick="goToPortal()" id="portal-btn" class="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 text-[#050505] font-bold font-heading uppercase tracking-widest px-10 py-5 rounded-full shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-105 hover:shadow-[0_0_50px_rgba(212,175,55,0.7)] transition-all duration-300 cursor-pointer">
+                Buka Portal Resmi PMBM
+            </button>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- ================================================================= -->
+    <!-- LOGIKA JAVASCRIPT & SINTESIS AUDIO -->
+    <!-- ================================================================= -->
     <script>
         // DOM Elements
         const scene1 = document.getElementById('scene-1');
@@ -325,31 +330,30 @@
         const countdownContainer = document.getElementById('countdown-container');
         const countdownValue = document.getElementById('countdown-value');
         
-        const video = document.getElementById('intro-video');
+        const launchVideo = document.getElementById('launch-video');
         const skipBtn = document.getElementById('skip-btn');
         const finalTextContainer = document.getElementById('final-text-container');
         const portalBtn = document.getElementById('portal-btn');
 
         let audioCtx;
 
-        // --- 1. Audio Synthesis (Web Audio API) ---
+        // --- 1. Web Audio API Synthesizers ---
         function initAudio() {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             audioCtx = new AudioContext();
         }
 
-        // Suara dampak sinematik, megah & formal saat tombol peresmian ditekan
+        // Dampak Sinematik saat Tombol Ditekan
         function playCinematicImpact() {
             if (!audioCtx) return;
-
             const now = audioCtx.currentTime;
 
-            // Layer 1: Sub-Bass Boom Drop
+            // Sub-Bass Boom Drop
             const subOsc = audioCtx.createOscillator();
             const subGain = audioCtx.createGain();
             subOsc.type = 'sine';
             subOsc.frequency.setValueAtTime(180, now);
-            subOsc.frequency.exponentialRampToValueAtTime(32, now + 1.8);
+            subOsc.frequency.exponentialRampToValueAtTime(30, now + 1.8);
             subGain.gain.setValueAtTime(1.0, now);
             subGain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
 
@@ -358,8 +362,8 @@
             subOsc.start(now);
             subOsc.stop(now + 1.8);
 
-            // Layer 2: Resonansi Brass / Logam Megah
-            const brassFreqs = [110, 164.81, 220, 329.63]; // A2, E3, A3, E4
+            // Resonansi Brass Logam
+            const brassFreqs = [110, 164.81, 220, 329.63];
             brassFreqs.forEach(freq => {
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
@@ -367,41 +371,37 @@
                 osc.frequency.setValueAtTime(freq, now);
 
                 gain.gain.setValueAtTime(0, now);
-                gain.gain.linearRampToValueAtTime(0.25, now + 0.05); // quick punch
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5); // long grand decay
+                gain.gain.linearRampToValueAtTime(0.25, now + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
 
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start(now);
                 osc.stop(now + 2.5);
             });
-
-            // Layer 3: Transient Thud
-            const bufferSize = audioCtx.sampleRate * 0.15;
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                data[i] = Math.random() * 2 - 1;
-            }
-
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buffer;
-            const noiseFilter = audioCtx.createBiquadFilter();
-            noiseFilter.type = 'lowpass';
-            noiseFilter.frequency.setValueAtTime(300, now);
-            noiseFilter.frequency.exponentialRampToValueAtTime(60, now + 0.15);
-
-            const noiseGain = audioCtx.createGain();
-            noiseGain.gain.setValueAtTime(0.7, now);
-            noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-
-            noise.connect(noiseFilter);
-            noiseFilter.connect(noiseGain);
-            noiseGain.connect(audioCtx.destination);
-            noise.start(now);
         }
 
-        // Suara dramatis saat tombol ditekan (Low rumble to high sweep)
+        // Efek Penegasan Tekanan Tombol
+        function playClickSound() {
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(800, now);
+            osc.frequency.exponentialRampToValueAtTime(120, now + 0.08);
+
+            gain.gain.setValueAtTime(0.3, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.08);
+        }
+
+        // Suara Dramatis Menjelang Countdown
         function playDramaticBuildup() {
             if (!audioCtx) return;
             const now = audioCtx.currentTime;
@@ -410,26 +410,25 @@
             const gainNode = audioCtx.createGain();
             
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(45, now); 
-            osc.frequency.exponentialRampToValueAtTime(650, now + 5.5);
+            osc.frequency.setValueAtTime(50, now); 
+            osc.frequency.exponentialRampToValueAtTime(600, now + 5.2);
             
             gainNode.gain.setValueAtTime(0, now);
-            gainNode.gain.linearRampToValueAtTime(0.35, now + 0.5);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 5.5);
+            gainNode.gain.linearRampToValueAtTime(0.3, now + 0.5);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 5.2);
             
             osc.connect(gainNode);
             gainNode.connect(audioCtx.destination);
             
             osc.start(now);
-            osc.stop(now + 5.5);
+            osc.stop(now + 5.2);
         }
 
-        // Suara tick / beep countdown presisi (pitch naik dari count 5 -> 1)
+        // Detak Nada Hitung Mundur (Ascending Pitch 5 ke 1)
         function playCountdownTick(count) {
             if (!audioCtx) return;
             const now = audioCtx.currentTime;
 
-            // Pitch meningkat seiring angka mengecil untuk membangun ketegangan
             const pitchMap = {
                 5: 440,    // A4
                 4: 523.25, // C5
@@ -448,11 +447,11 @@
             osc2.type = 'triangle';
 
             osc1.frequency.setValueAtTime(freq, now);
-            osc2.frequency.setValueAtTime(freq * 2, now); // Harmonik oktaf atas
+            osc2.frequency.setValueAtTime(freq * 2, now);
 
             gainNode.gain.setValueAtTime(0, now);
-            gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01); // Crisp attack
-            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.22); // Sharp decay
+            gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
 
             osc1.connect(gainNode);
             osc2.connect(gainNode);
@@ -460,16 +459,15 @@
 
             osc1.start(now);
             osc2.start(now);
-            osc1.stop(now + 0.22);
-            osc2.stop(now + 0.22);
+            osc1.stop(now + 0.25);
+            osc2.stop(now + 0.25);
         }
 
-        // Suara klimaks saat hitung mundur selesai
+        // Fanfare Klimaks Saat Countdown Menyentuh Angka 0
         function playFanfareClimax() {
             if (!audioCtx) return;
             const now = audioCtx.currentTime;
 
-            // Chord C Major Climax (C5, E5, G5, C6)
             const chords = [523.25, 659.25, 783.99, 1046.50];
             chords.forEach(freq => {
                 const osc = audioCtx.createOscillator();
@@ -480,17 +478,17 @@
 
                 gain.gain.setValueAtTime(0, now);
                 gain.gain.linearRampToValueAtTime(0.35, now + 0.03);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
 
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
 
                 osc.start(now);
-                osc.stop(now + 1.8);
+                osc.stop(now + 2.0);
             });
         }
 
-        // --- 2. Scene Transitions ---
+        // --- 2. Navigasi Scene ---
         function fadeToScene(hideEl, showEl, delay = 800) {
             hideEl.classList.remove('active');
             setTimeout(() => {
@@ -498,65 +496,61 @@
             }, delay);
         }
 
-        // --- 3. Flow Controllers ---
-        
-        // Mulai Sistem -> Request Fullscreen & Pindah ke Scene 2
-        function startSystem() {
-            // Fullscreen request
+        // --- 3. Alur Eksekusi Sistem ---
+
+        // SCENE 1 -> SCENE 2: Mulai Launching
+        function startLaunching() {
+            // Mode Fullscreen
             const docElm = document.documentElement;
             if (docElm.requestFullscreen) docElm.requestFullscreen().catch(e => console.log(e));
             
-            // Init Audio API inside user gesture
+            // Inisialisasi Suara
             initAudio();
 
             fadeToScene(scene1, scene2);
         }
 
-        // Eksekusi Tombol Peresmian -> Hitung Mundur
+        // SCENE 2: Tekan Tombol 3D Biru -> Countdown
         function triggerLaunch() {
             const physicalBtn = document.getElementById('btn-launch-physical');
             
-            // Cegah double click
             if (physicalBtn.classList.contains('pressed')) return;
 
-            // 1. Efek tombol tertekan ke bawah secara fisik
+            // 1. Animasi tombol fisik tertekan
             physicalBtn.classList.add('pressed');
 
-            // 2. Mainkan suara dampak sinematik & formal
+            // 2. Mainkan Suara Impact & Klik
+            playClickSound();
             playCinematicImpact();
             
-            // 3. Mulai audio buildup dramatis sesaat setelah ditekan
             setTimeout(() => {
                 playDramaticBuildup();
             }, 200);
 
-            // 4. Sembunyikan tombol dengan efek kilasan biru, lalu tampilkan countdown
+            // 3. Transisi Kilatan Layar Biru -> Tampilkan Countdown
             setTimeout(() => {
                 launchContainer.style.transition = "opacity 0.8s ease, transform 0.8s ease";
                 launchContainer.style.opacity = "0";
                 launchContainer.style.transform = "scale(1.2)";
                 
-                // Efek flash (kilasan) biru singkat ke seluruh layar sebagai transisi
                 document.body.style.transition = "background-color 0.2s ease";
                 document.body.style.backgroundColor = "#1e3a8a"; 
                 
                 setTimeout(() => {
-                    document.body.style.backgroundColor = "#050505"; // Kembali gelap
+                    document.body.style.backgroundColor = "#050505";
                     launchContainer.style.display = "none";
                     countdownContainer.classList.add('visible');
                     
-                    // Memulai hitung mundur 5 detik
                     startCountdownTimer();
                 }, 400); 
 
-            }, 800); // Tahan posisi tombol di bawah selama 0.8 detik sebelum transisi flash
+            }, 800);
         }
 
-        // Timer 5..4..3..2..1
+        // Hitung Mundur 5.. 4.. 3.. 2.. 1.. 0
         function startCountdownTimer() {
             let count = 5;
             
-            // Initial pop & tick untuk 5
             countdownValue.innerText = count;
             countdownValue.classList.add('pop');
             playCountdownTick(count);
@@ -565,15 +559,16 @@
                 count--;
                 if (count > 0) {
                     countdownValue.classList.remove('pop');
-                    void countdownValue.offsetWidth; // Reflow to reset animation
+                    void countdownValue.offsetWidth; // Memicu CSS reflow
                     countdownValue.classList.add('pop');
                     countdownValue.innerText = count;
                     playCountdownTick(count);
                 } else {
                     clearInterval(interval);
-                    // Suara klimaks transisi
+                    
                     playFanfareClimax();
-                    // Selesai hitung mundur, pindah ke Video
+                    
+                    // Pindah ke SCENE 3 (Video)
                     fadeToScene(scene2, scene3);
                     setTimeout(() => {
                         startVideo();
@@ -582,42 +577,41 @@
             }, 1000);
         }
 
-        // Mainkan Video
+        // Memutar Video
         function startVideo() {
-            video.volume = 1.0;
-            video.play().catch(err => console.log("Auto-play prevented by browser:", err));
+            launchVideo.volume = 1.0;
+            launchVideo.play().catch(err => console.log("Autoplay dicegah browser:", err));
         }
 
-        // Saat Video Selesai (atau diskip)
-        video.onended = endVideo;
-
-        function endVideo() {
-            video.pause();
+        // SCENE 3 -> SCENE 4: Video Selesai -> Tampilan Penutup
+        function goToFinalScene() {
+            launchVideo.pause();
             
-            // Transisi fade-out video
-            video.style.transition = "opacity 1.5s ease";
-            video.style.opacity = "0";
+            launchVideo.style.transition = "opacity 1.5s ease";
+            launchVideo.style.opacity = "0";
             skipBtn.style.opacity = "0";
             
             setTimeout(() => {
-                video.style.display = "none";
+                launchVideo.style.display = "none";
                 skipBtn.style.display = "none";
                 
-                // Munculkan Teks Megah
+                // Munculkan Teks Penutup (SCENE 4)
                 finalTextContainer.classList.add('revealed');
                 
-                // Munculkan tombol portal 2 detik setelah teks muncul
+                // Munculkan Tombol Portal
                 setTimeout(() => {
                     portalBtn.classList.add('visible');
-                }, 2000);
+                }, 1500);
 
-            }, 1500); // Tunggu video fade out
+            }, 1500);
         }
+
         // FUNGSI UTAMA REDIRECT KE PORTAL RESMI NETLIFY
         function goToPortal() {
             // URL Portal PMBM Resmi Anda:
             window.location.href = "https://pmbm-mtsdaarulhikmahpamulang.netlify.app";
         }
+
     </script>
 </body>
 </html>
