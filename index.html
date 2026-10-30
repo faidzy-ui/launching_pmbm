@@ -208,7 +208,7 @@
             <!-- Flanked Header: Logo Left - Text Middle - Logo Right -->
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 mb-12 w-full">
                 <!-- Logo Left: Kemenag -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Lambang_Kementerian_Agama.png" alt="Logo Kemenag" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
+                <img src="logo_kemenag.png" alt="Logo Kemenag" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
 
                 <!-- Center Text Stack -->
                 <div class="flex flex-col items-center justify-center space-y-2 md:space-y-3">
@@ -239,7 +239,7 @@
                 </div>
 
                 <!-- Logo Right: Madrasah -->
-                <img src="logo-madrasah.png" alt="Logo MTs Daarul Hikmah" onerror="this.onerror=null; this.src='https://placehold.co/160x160/1e3a8a/ffffff?text=Logo+MTs';" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
+                <img src="logo_mts.png" alt="Logo MTs Daarul Hikmah" onerror="this.onerror=null; this.src='https://placehold.co/160x160/1e3a8a/ffffff?text=Logo+MTs';" class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl">
             </div>
 
             <!-- Start Button below flanked container -->
@@ -613,7 +613,11 @@
 
             }, 1500); // Tunggu video fade out
         }
-
+        // FUNGSI UTAMA REDIRECT KE PORTAL RESMI NETLIFY
+        function goToPortal() {
+            // URL Portal PMBM Resmi Anda:
+            window.location.href = "https://pmbm-mtsdaarulhikmahpamulang.netlify.app";
+        }
     </script>
 </body>
 </html>
